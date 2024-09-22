@@ -16,7 +16,9 @@ def extract_repo_name(text):
     where "northcoders" is the name of the account and "de-intro-regex" is the
     name of the repo
     """
-    pass
+    regex = re.compile(r"github.com/[^/]*/([^/]*)")
+    if regex.search(text):
+        return regex.search(text).group(1)
 
 
 @run_test
