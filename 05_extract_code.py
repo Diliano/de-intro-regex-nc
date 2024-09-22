@@ -17,7 +17,8 @@ def extract_code(text):
     You should extract that number from the string and return it as
     an integer
     """
-    pass
+    regex = re.compile(r"[0-9]+")
+    return int(regex.search(text).group())
 
 
 @run_test
