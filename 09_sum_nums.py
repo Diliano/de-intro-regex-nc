@@ -16,7 +16,8 @@ def sum_nums(text):
 
     If there are no numbers, you should return 0
     """
-    pass
+    regex = re.compile(r"[0-9]+")
+    return sum(int(match) for match in regex.findall(text))
 
 
 @run_test
