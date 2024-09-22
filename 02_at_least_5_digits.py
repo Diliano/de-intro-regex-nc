@@ -1,4 +1,4 @@
-from test_api.checks import run_test, skip_test, format_err_msg
+from test_api.checks import run_test, run_test, format_err_msg
 import re
 
 # Change only the variable called `YOUR_REGEX_HERE`.
@@ -8,7 +8,7 @@ import re
 def at_least_5_digits():
     # Your pattern should match a string or substring containing at least 5
     #  of the digits from 1 to 9 only
-    YOUR_REGEX_HERE = 'x'
+    YOUR_REGEX_HERE = r"[1-9]{5,}"
     # replace 'x' with an appropriate regular expression pattern
     return re.compile(YOUR_REGEX_HERE)
 
@@ -31,7 +31,7 @@ def test_matches_5_digits_at_start_of_string():
         format_err_msg(f"match object", at_least_5_digits().match("45613837"))
 
 
-@skip_test
+@run_test
 def test_matches_5_digits_contained_within_string():
     assert len(at_least_5_digits().findall("45613sggs83767xy")) == 2, \
         format_err_msg(2, len(at_least_5_digits().findall("45613sggs83767xy")))
@@ -49,7 +49,7 @@ def test_matches_5_digits_contained_within_string():
         format_err_msg('match object', at_least_5_digits().search("13837!f"))
 
 
-@skip_test
+@run_test
 def test_should_not_match_string_with_fewer_than_5_digits():
     assert not at_least_5_digits().search("123"), \
         format_err_msg(None, at_least_5_digits().search("123"))
