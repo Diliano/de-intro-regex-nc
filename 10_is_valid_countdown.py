@@ -17,8 +17,9 @@ def is_valid_countdown(text):
     In countdown a valid collection contains at least 4 consonants and 3
     vowels and has exactly 9 letters
     """
-    pass
-
+    vowel_regex = re.compile(r"[aeiou]")
+    consonant_regex = re.compile(r"[b-df-hj-np-tv-z]")
+    return len(vowel_regex.findall(text)) >= 3 and len(consonant_regex.findall(text)) >= 4 and len(text) == 9
 
 @run_test
 def test_is_valid_countdown_returns_true_for_a_valid_countdown():
@@ -33,7 +34,7 @@ def test_is_valid_countdown_returns_true_for_a_valid_countdown():
         format_err_msg(True, is_valid_countdown("abejikosu"))
 
 
-@skip_test
+@run_test
 def test_is_valid_countdown_returns_false_for_an_invalid_countdown():
     assert not is_valid_countdown("aeiouaxyz"), \
         format_err_msg(False, is_valid_countdown("aeiouaxyz"))
