@@ -10,7 +10,7 @@ def exact_6_abcs():
     # These characters may only consist of 'a', 'b' or 'c' in any order.
     # You should look up regex anchors for this exercise.
     
-    YOUR_REGEX_HERE = 'x'
+    YOUR_REGEX_HERE = r"^[abc]{6}$"
     # replace 'x' with an appropriate regular expression pattern
     return re.compile(YOUR_REGEX_HERE)
 
@@ -24,7 +24,7 @@ def test_matches_exact_6_abcs():
         format_err_msg('match object', exact_6_abcs().search("cbabac"))
 
 
-@skip_test
+@run_test
 def test_does_not_match_unless_string_contains_exact_6_abcs():
     assert not exact_6_abcs().search("jdjdhgcacacamzmxm"), \
         format_err_msg(None, exact_6_abcs().search("jdjdhgcacacamzmxm"))
